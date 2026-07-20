@@ -9,13 +9,7 @@ function updateTheme(isDark) {
 
 document.addEventListener('DOMContentLoaded', (e) => {
 
-    // update on initial page load
     updateTheme(media.matches);
-
-    // then update on partial page reloads
-    Blazor.addEventListener('enhancedload', () => {
-        updateTheme(media.matches);
-    });
 
     media.addEventListener("change", (event) => {
         updateTheme(event.matches);
