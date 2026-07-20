@@ -12,8 +12,8 @@
   </PropertyGroup>
 
   <PropertyGroup Label="ElectronNetCommon">
-    <ElectronVersion>41.3.0</ElectronVersion>
-    <ElectronBuilderVersion>26.8.1</ElectronBuilderVersion>
+    <ElectronVersion>43.1.1</ElectronVersion>
+    <ElectronBuilderVersion>26.15.3</ElectronBuilderVersion>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
