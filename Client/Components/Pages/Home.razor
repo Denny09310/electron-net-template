@@ -1,0 +1,51 @@
+﻿@page "/"
+
+<div class="min-h-full flex flex-col items-center justify-center px-6 text-center">
+
+    <!-- Header -->
+    <div class="max-w-xl">
+
+        <!-- Icons -->
+        <div class="flex justify-center items-center gap-6 mb-6">
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/electron/electron-original.svg"
+                 class="h-16 w-16 transition duration-300 hover:drop-shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+                 alt="Electron" />
+
+            <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/blazor/blazor-original.svg"
+                 class="h-16 w-16 transition duration-300 hover:drop-shadow-[0_0_12px_rgba(168,85,247,0.8)]"
+                 alt="Blazor" />
+        </div>
+
+        <h1 class="text-4xl font-bold tracking-tight mb-4">
+            Electron .NET + Blazor
+        </h1>
+
+        <p class="text-gray-400 text-lg">
+            Build fast cross-platform desktop apps using Electron and Blazor.
+        </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-10 flex flex-wrap gap-4 justify-center">
+
+        <BbButton Href="https://github.com/ElectronNET/Electron.NET/wiki" Target="_blank"
+                  Variant="ButtonVariant.Outline">
+            Electron.NET
+        </BbButton>
+
+        <BbButton Href="https://blazorblueprintui.com/" Target="_blank" Variant="ButtonVariant.Outline">
+            Blazor Blueprint
+        </BbButton>
+
+        <BbButton Href="#" Target="_blank" Variant="ButtonVariant.Outline">
+            Template Repo
+        </BbButton>
+
+    </div>
+
+    <!-- Footer / Info -->
+    <div class="mt-12 text-sm text-gray-500">
+        <p>.NET @Environment.Version • Electron.NET 0.5.0-pre.73 • BlazorBlueprint 3.9.6</p>
+    </div>
+
+</div>
