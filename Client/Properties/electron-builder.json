@@ -5,7 +5,13 @@
     "target": [
       "tar.xz"
     ],
-    "executableArgs": [ "--no-sandbox" ],
+    "files": [
+      "**/*",
+      "!linux*/*"
+    ],
+    "executableArgs": [
+      "--no-sandbox"
+    ],
     "artifactName": "${name}-${arch}-${version}.${ext}"
   },
   "win": {
@@ -14,6 +20,17 @@
         "target": "portable",
         "arch": "x64"
       }
+    ],
+    "files": [
+      "**/*",
+      "!win*/*",
+      "!bin/*"
+    ]
+  },
+  "mac": {
+    "files": [
+      "**/*",
+      "!mac*/*"
     ]
   }
 }
