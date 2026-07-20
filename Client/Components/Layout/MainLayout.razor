@@ -1,7 +1,12 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    @Body
+<div class="flex flex-col h-screen overflow-hidden">
+    <header class="h-titlebar [app-region:drag]">
+        @* Insert titlebar content here *@
+    </header>
+    <main class="flex-1 flex flex-col overflow-auto">
+        @Body
+    </main>
 </div>
 
 <BbPortalHost />

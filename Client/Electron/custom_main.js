@@ -1,4 +1,4 @@
-import { ipcMain, BrowserWindow } from "electron";
+import { ipcMain as ipc, BrowserWindow } from "electron";
 
 const THEME = {
     light: {
@@ -13,7 +13,7 @@ const THEME = {
 
 export function onStartup(host) {
 
-    ipcMain.handle("set-titlebar-overlay", (event, name) => {
+    ipc.handle("set-titlebar-overlay", (event, name) => {
         const theme = THEME[name];
         if (!theme) return;
 

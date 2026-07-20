@@ -18,9 +18,3 @@
     right: 0.75rem;
     top: 0.5rem;
 }
-
-
-.page {
-    height: calc(100vh - env(titlebar-area-height, 0px));
-    overflow-y: auto;
-}
