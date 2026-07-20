@@ -18,9 +18,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorBlueprint.Components" Version="3.9.6" />
-    <PackageReference Include="ElectronNET.Core" Version="0.5.0-pre.73" />
-    <PackageReference Include="ElectronNET.Core.AspNet" Version="0.5.0-pre.73" />
+    <PackageReference Include="BlazorBlueprint.Components" Version="3.14.1" />
+    <PackageReference Include="ElectronNET.Core" Version="0.5.1" />
+    <PackageReference Include="ElectronNET.Core.AspNet" Version="0.5.1" />
   </ItemGroup>
 
   <ItemGroup>
