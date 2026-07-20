@@ -41,8 +41,6 @@ static async Task ElectronBootstrap()
     if (OperatingSystem.IsWindows() || OperatingSystem.IsLinux())
     {
         options.AutoHideMenuBar = true;
-        options.TitleBarOverlay.Color = "#ffffff";
-        options.TitleBarOverlay.SymbolColor = "#000000";
     }
 
     var window = await Electron.WindowManager.CreateWindowAsync(options);
