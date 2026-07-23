@@ -24,10 +24,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Custom Electron Main -->
     <None Update="Electron\custom_main.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <TargetPath>.electron\custom_main.js</TargetPath>
     </None>
+    
+    <!-- Assets Folder  -->
+    <Content Include="Assets\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

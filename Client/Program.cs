@@ -31,11 +31,15 @@ static async Task ElectronBootstrap()
     var options = new BrowserWindowOptions
     {
         Show = false,
+        IsRunningBlazor = true,
+
         TitleBarStyle = TitleBarStyle.hidden,
         TitleBarOverlay = new TitleBarOverlay()
         {
             Height = 32
         },
+
+        Icon = Path.Combine(AppContext.BaseDirectory, "Assets", "appicon.ico")
     };
 
     if (OperatingSystem.IsWindows() || OperatingSystem.IsLinux())

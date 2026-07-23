@@ -3,11 +3,11 @@ import { ipcMain as ipc, BrowserWindow } from "electron";
 const THEME = {
     light: {
         color: "#ffffff",
-        symbolColor: "#000000"
+        symbolColor: "#333333"
     },
     dark: {
-        color: "#0a0a0a",
-        symbolColor: "#ffffff"
+        color: "#171717",
+        symbolColor: "#e5e5e5"
     }
 }
 
