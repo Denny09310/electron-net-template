@@ -11,14 +11,19 @@
     <link rel="stylesheet" href="@Assets["_content/BlazorBlueprint.Components/blazorblueprint.css"]" />
     <link rel="stylesheet" href="@Assets["Client.styles.css"]" />
     <ImportMap />
-    <HeadOutlet @rendermode="new InteractiveServerRenderMode(false)" />
+    <HeadOutlet @rendermode="Mode" />
     <script src="@Assets["lib/theme.js"]"></script>
 </head>
 
 <body>
-    <Routes @rendermode="new InteractiveServerRenderMode(false)" />
+    <Routes @rendermode="Mode" />
     <ReconnectModal />
     <script src="@Assets["_framework/blazor.web.js"]"></script>
 </body>
 
 </html>
+
+@code
+{
+    private static readonly IComponentRenderMode Mode = new InteractiveServerRenderMode(false);
+}
