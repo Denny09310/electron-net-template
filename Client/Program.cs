@@ -26,7 +26,7 @@ app.MapRazorComponents<Client.Components.App>()
 
 app.Run();
 
-static async Task ElectronBootstrap()
+static async Task ElectronBootstrap(IServiceProvider sp)
 {
     var options = new BrowserWindowOptions
     {
@@ -47,6 +47,8 @@ static async Task ElectronBootstrap()
         options.AutoHideMenuBar = true;
     }
 
-    var window = await Electron.WindowManager.CreateWindowAsync(options);
+    var manager = sp.GetRequiredService<WindowManager>();
+    var window = await manager.CreateWindowAsync(options);
+
     window.OnReadyToShow += window.Show;
 }

@@ -1,5 +1,7 @@
 ﻿@page "/"
 
+@inject Shell Shell
+
 <div class="flex-1 flex flex-col items-center justify-center px-6 text-center">
 
     <!-- Header -->
@@ -28,16 +30,17 @@
     <!-- Actions -->
     <div class="mt-10 flex flex-wrap gap-4 justify-center">
 
-        <BbButton Href="https://github.com/ElectronNET/Electron.NET/wiki" Target="_blank"
-                  Variant="ButtonVariant.Outline">
+        <BbButton Variant="ButtonVariant.Outline"
+                  @onclick="@(() => OpenExternalAsync("https://github.com/ElectronNET/Electron.NET/wiki"))">
             Electron.NET
         </BbButton>
 
-        <BbButton Href="https://blazorblueprintui.com/" Target="_blank" Variant="ButtonVariant.Outline">
+        <BbButton Variant="ButtonVariant.Outline"
+                  @onclick="@(() => OpenExternalAsync("https://blazorblueprintui.com/"))">
             Blazor Blueprint
         </BbButton>
 
-        <BbButton Href="#" Target="_blank" Variant="ButtonVariant.Outline">
+        <BbButton Variant="ButtonVariant.Outline">
             Template Repo
         </BbButton>
 
@@ -49,3 +52,11 @@
     </div>
 
 </div>
+
+@code
+{
+    private async Task OpenExternalAsync(string url)
+    {
+        await Shell.OpenExternalAsync(url);
+    }
+}
