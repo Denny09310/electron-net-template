@@ -7,11 +7,8 @@ function updateTheme(isDark) {
     ipcRenderer.invoke("set-titlebar-overlay", isDark ? "dark" : "light");
 }
 
-document.addEventListener('DOMContentLoaded', (e) => {
+updateTheme(media.matches);
 
-    updateTheme(media.matches);
-
-    media.addEventListener("change", (event) => {
-        updateTheme(event.matches);
-    });
-})
+media.addEventListener("change", (event) => {
+    updateTheme(event.matches);
+});

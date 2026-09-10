@@ -1,6 +1,8 @@
 using BlazorBlueprint.Components;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
+using ElectronNET.AspNet.Middleware;
+using ElectronNET.AspNet.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.UseElectron(args, ElectronBootstrap);
@@ -11,13 +13,16 @@ builder.Services.AddRazorComponents()
 builder.Services.AddElectron();
 builder.Services.AddBlazorBlueprintComponents();
 
+builder.Services.AddSingleton<IElectronAuthenticationService, ElectronAuthenticationService>();
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
 }
-app.UseStatusCodePagesWithReExecute("/not-found", createScopeForStatusCodePages: true);
+
+app.UseMiddleware<ElectronAuthenticationMiddleware>();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
@@ -26,7 +31,7 @@ app.MapRazorComponents<Client.Components.App>()
 
 app.Run();
 
-static async Task ElectronBootstrap(IServiceProvider sp)
+static async Task ElectronBootstrap()
 {
     var options = new BrowserWindowOptions
     {
@@ -47,8 +52,7 @@ static async Task ElectronBootstrap(IServiceProvider sp)
         options.AutoHideMenuBar = true;
     }
 
-    var manager = sp.GetRequiredService<WindowManager>();
-    var window = await manager.CreateWindowAsync(options);
+    var window = await Electron.WindowManager.CreateWindowAsync(options);
 
     window.OnReadyToShow += window.Show;
 }
