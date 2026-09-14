@@ -1,7 +1,5 @@
 ﻿@page "/"
 
-@inject Shell Shell
-
 <div class="flex-1 flex flex-col items-center justify-center px-6 text-center">
 
     <!-- Header -->
@@ -48,7 +46,7 @@
 
     <!-- Footer / Info -->
     <div class="mt-12 text-sm text-gray-500">
-        <p>.NET @Environment.Version • Electron.NET 0.6.0 • BlazorBlueprint 3.16.0</p>
+        <p>.NET @Environment.Version • Electron.NET 0.6.0 • BlazorBlueprint 3.17.0</p>
     </div>
 
 </div>
@@ -57,6 +55,6 @@
 {
     private async Task OpenExternalAsync(string url)
     {
-        await Shell.OpenExternalAsync(url);
+        await Electron.Shell.OpenExternalAsync(url);
     }
 }
