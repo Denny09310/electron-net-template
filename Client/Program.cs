@@ -39,12 +39,12 @@ static async Task ElectronBootstrap()
         IsRunningBlazor = true,
 
         TitleBarStyle = TitleBarStyle.hidden,
-        TitleBarOverlay = new TitleBarOverlay()
+        TitleBarOverlay = new TitleBarOverlay
         {
             Height = 32
         },
 
-        WebPreferences =
+        WebPreferences = new WebPreferences
         {
             Partition = "persist:{name_of_the_assembly_snake_case}"
         },
