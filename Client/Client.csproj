@@ -12,14 +12,14 @@
   </PropertyGroup>
 
   <PropertyGroup Label="ElectronNetCommon">
-    <ElectronVersion>44.2.0</ElectronVersion>
+    <ElectronVersion>45.0.0</ElectronVersion>
     <ElectronBuilderVersion>26.15.3</ElectronBuilderVersion>
     <ElectronIcon>Assets\appicon.ico</ElectronIcon>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BlazorBlueprint.Components" Version="3.17.0" />
+    <PackageReference Include="BlazorBlueprint.Components" Version="4.1.0" />
     <PackageReference Include="ElectronNET.Core" Version="0.6.0" />
     <PackageReference Include="ElectronNET.Core.AspNet" Version="0.6.0" />
   </ItemGroup>
