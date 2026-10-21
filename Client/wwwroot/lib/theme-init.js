@@ -1,14 +1,25 @@
 const { ipcRenderer } = require("electron");
 
-const media = window.matchMedia("(prefers-color-scheme: dark)");
+const root = document.documentElement;
+let _theme = null;
 
-function updateTheme(isDark) {
-    document.documentElement.classList.toggle("dark", isDark);
-    ipcRenderer.invoke("set-titlebar-overlay", isDark ? "dark" : "light");
+function updateTheme() {
+    const theme = root.classList.contains("dark") ? "dark" : "light";
+
+    if (theme === _theme) return;
+    _theme = theme;
+
+    ipcRenderer.invoke("set-titlebar-overlay", theme);
 }
 
-updateTheme(media.matches);
+updateTheme();
 
-media.addEventListener("change", (event) => {
-    updateTheme(event.matches);
+const observer = new MutationObserver(updateTheme);
+observer.observe(root, {
+    attributes: true,
+    attributeFilter: ["class"]
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    Blazor.addEventListener("enhancedload", updateTheme);
 });
