@@ -44,6 +44,11 @@ static async Task ElectronBootstrap()
             Height = 32
         },
 
+        WebPreferences =
+        {
+            Partition = "persist:{name_of_the_assembly_snake_case}"
+        },
+
         Icon = Path.Combine(AppContext.BaseDirectory, "Assets", "appicon.ico")
     };
 

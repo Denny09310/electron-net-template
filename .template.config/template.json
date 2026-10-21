@@ -36,6 +36,42 @@
             ],
             "defaultValue": "net10.0",
             "replaces": "net10.0"
+        },
+        "assemblyNameSnakeCase": {
+            "type": "derived",
+            "valueSource": "name",
+            "valueTransform": "AssemblyNameSnakeCase",
+            "replaces": "{name_of_the_assembly_snake_case}",
+            "description": "Snake case version of the scaffolded project name"
+        }
+    },
+    "forms": {
+        "AssemblyNameSnakeCase": {
+            "identifier": "chain",
+            "steps": [
+                "SplitAcronyms",
+                "SplitWords",
+                "NormalizeSeparators",
+                "Lowercase"
+            ]
+        },
+        "SplitAcronyms": {
+            "identifier": "replace",
+            "pattern": "([A-Z]+)([A-Z][a-z])",
+            "replacement": "$1_$2"
+        },
+        "SplitWords": {
+            "identifier": "replace",
+            "pattern": "([a-z0-9])([A-Z])",
+            "replacement": "$1_$2"
+        },
+        "NormalizeSeparators": {
+            "identifier": "replace",
+            "pattern": "[^A-Za-z0-9]+",
+            "replacement": "_"
+        },
+        "Lowercase": {
+            "identifier": "lowerCaseInvariant"
         }
     },
     "sources": [
