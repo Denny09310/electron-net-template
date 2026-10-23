@@ -1,8 +1,15 @@
+using Bit.Butil;
+
 using BlazorBlueprint.Components;
+
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 using ElectronNET.AspNet.Middleware;
 using ElectronNET.AspNet.Services;
+
+using HostApp.Services;
+
+using Plugins.Abstractions.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.UseElectron(args, ElectronBootstrap);
@@ -10,10 +17,16 @@ builder.UseElectron(args, ElectronBootstrap);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
+builder.Services.AddLocalization();
+
 builder.Services.AddElectron();
 builder.Services.AddBlazorBlueprintComponents();
+builder.Services.AddBitButilServices();
+builder.Services.AddPlugins(builder.Configuration);
 
 builder.Services.AddSingleton<IElectronAuthenticationService, ElectronAuthenticationService>();
+builder.Services.AddSingleton<ISettingsPersistenceService, SettingsPersistenceService>();
+builder.Services.AddSingleton<ILocalizationService, LocalizationService>();
 
 var app = builder.Build();
 
@@ -26,13 +39,35 @@ app.UseMiddleware<ElectronAuthenticationMiddleware>();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
-app.MapRazorComponents<Client.Components.App>()
-    .AddInteractiveServerRenderMode();
+app.UsePluginStaticAssets();
+app.MapRazorComponents<HostApp.Components.App>()
+    .AddInteractiveServerRenderMode()
+    .AddPluginsAssemblies(app.Services);
 
 app.Run();
 
-static async Task ElectronBootstrap()
+static async Task ElectronBootstrap(IServiceProvider services)
 {
+    // Apply the user's preferred culture before anything renders.
+    await services
+        .GetRequiredService<ILocalizationService>()
+        .ApplyPreferredCultureAsync();
+
+    var registry = services.GetRequiredService<PluginRegistry>();
+
+    // 1. Initialize plugins after Electron's app-ready event.
+    foreach (var plugin in registry.Plugins)
+    {
+        await plugin.InitializeAsync(services);
+    }
+
+    // 2. Register handlers once initialization has completed.
+    foreach (var plugin in registry.Plugins)
+    {
+        plugin.RegisterHandlers(services);
+    }
+
+    // 3. Create the main window.
     var options = new BrowserWindowOptions
     {
         Show = false,

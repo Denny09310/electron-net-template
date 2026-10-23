@@ -1,0 +1,14 @@
+@inject PluginRegistry Registry
+
+@foreach (var plugin in Registry.Loaded)
+{
+    if (plugin.ContentRoot is not { } contentRoot)
+    {
+        continue;
+    }
+
+    if (File.Exists(Path.Combine(contentRoot, "css", "tailwind.min.css")))
+    {
+        <link rel="stylesheet" href="@($"_content/{plugin.AssemblyName}/css/tailwind.min.css")" />
+    }
+}

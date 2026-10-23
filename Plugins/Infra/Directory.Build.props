@@ -1,0 +1,39 @@
+<Project>
+
+  <!-- Only plugin projects consume this file: the Plugins.Abstractions
+       contract (at the output root, one level above this folder) must not
+       reference itself. -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' != 'Plugins.Abstractions'">
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <CompressionEnabled>false</CompressionEnabled>
+  </PropertyGroup>
+
+  <!-- Compile-only references: every runtime asset here resolves to the
+       host application through the plugin load context, so nothing is
+       duplicated inside the deployed plugin folder. -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Plugins.Abstractions'">
+    <PackageReference Include="Bit.Butil" Version="10.6.2">
+      <ExcludeAssets>runtime;build;buildTransitive</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="BlazorBlueprint.Components" Version="4.1.0">
+      <ExcludeAssets>runtime;build;buildTransitive</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="ElectronNET.Core.API" Version="0.6.0">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.13">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="10.0.13">
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(MSBuildProjectName)' != 'Plugins.Abstractions'">
+    <ProjectReference Include="..\..\Plugins.Abstractions\Plugins.Abstractions.csproj">
+      <Private>false</Private>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>

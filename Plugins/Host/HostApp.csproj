@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Label="BlazorCommon">
+    <CompressionEnabled>false</CompressionEnabled>
+    <BlazorDisableThrowNavigationException>true</BlazorDisableThrowNavigationException>
+  </PropertyGroup>
+
+  <!-- The Plugins/ folder and the Plugins.Abstractions/ contract live inside
+       this project directory: their sources, razor files, wwwroot content and
+       generated files must NOT be swept into the host compile (plugins and the
+       contract are compiled by their own projects and loaded at runtime). -->
+  <PropertyGroup>
+    <DefaultItemExcludes>$(DefaultItemExcludes);Plugins\**;Plugins/**/*;Plugins.Abstractions\**;Plugins.Abstractions/**/*</DefaultItemExcludes>
+  </PropertyGroup>
+
+  <PropertyGroup Label="ElectronNetCommon">
+    <ElectronVersion>45.0.0</ElectronVersion>
+    <ElectronBuilderVersion>26.15.3</ElectronBuilderVersion>
+    <ElectronIcon>Assets\appicon.ico</ElectronIcon>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bit.Butil" Version="10.6.2" />
+    <PackageReference Include="BlazorBlueprint.Components" Version="4.1.0" />
+    <PackageReference Include="ElectronNET.Core" Version="0.6.0" />
+    <PackageReference Include="ElectronNET.Core.AspNet" Version="0.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Custom Electron Main -->
+    <None Update="Electron\custom_main.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <TargetPath>.electron\custom_main.js</TargetPath>
+    </None>
+
+    <!-- Assets Folder  -->
+    <Content Include="Assets\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Plugin contract shared with every plugin (see Plugins.Abstractions) -->
+    <ProjectReference Include="Plugins.Abstractions\Plugins.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

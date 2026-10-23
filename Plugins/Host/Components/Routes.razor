@@ -1,0 +1,9 @@
+﻿@inject PluginRegistry Registry
+
+<Router AppAssembly="typeof(Program).Assembly" AdditionalAssemblies="@([.. Registry.Loaded.Select(plugin => plugin.Assembly)])"
+        NotFoundPage="typeof(Pages.NotFound)">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>

@@ -1,0 +1,28 @@
+<Project>
+
+  <!-- Publish a plugin straight into the host's plugin folder, so a plain
+       "dotnet publish" is enough to deploy. The {name_of_the_assembly_snake_case}
+       token matches the "PluginOptions:Directory" setting in the host's
+       appsettings.json. -->
+  <Target Name="CopyPluginToLocalAppData" AfterTargets="Publish">
+
+    <PropertyGroup>
+      <_PluginDestination>$(LOCALAPPDATA)\{name_of_the_assembly_snake_case}\plugins\$(AssemblyName)\</_PluginDestination>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <_PluginFiles Include="$(PublishDir)**\*.*" />
+    </ItemGroup>
+
+    <Copy
+      SourceFiles="@(_PluginFiles)"
+      DestinationFiles="@(_PluginFiles->'$(_PluginDestination)%(RecursiveDir)%(Filename)%(Extension)')"
+      SkipUnchangedFiles="true" />
+
+    <Message
+      Importance="high"
+      Text="Plugin copied to: $(_PluginDestination)" />
+
+  </Target>
+
+</Project>

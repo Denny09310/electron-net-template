@@ -12,8 +12,8 @@
     "groupIdentity": "Electron.NET.Template",
     "name": "Electron.NET Desktop Application",
     "shortName": "electron-net",
-    "description": "Creates an Electron.NET desktop application with ASP.NET Core backend integration.",
-    "sourceName": "Client",
+    "description": "Creates an Electron.NET desktop application with ASP.NET Core backend integration. Pass --plugins to scaffold it plugin-based: plugin loading, menu/settings/route contribution and deployment.",
+    "sourceName": "HostApp",
     "tags": {
         "language": "C#",
         "type": "project"
@@ -36,6 +36,12 @@
             ],
             "defaultValue": "net10.0",
             "replaces": "net10.0"
+        },
+        "IncludePlugins": {
+            "type": "parameter",
+            "datatype": "bool",
+            "defaultValue": "false",
+            "description": "Include the plugin infrastructure: plugin loading (isolated AssemblyLoadContexts), menu/settings/route contribution, the Plugins.Abstractions contract project and publish deployment"
         },
         "assemblyNameSnakeCase": {
             "type": "derived",
@@ -76,7 +82,7 @@
     },
     "sources": [
         {
-            "source": "./Client",
+            "source": "./Base/Host",
             "target": "./",
             "modifiers": [
                 {
@@ -90,11 +96,57 @@
                     ]
                 }
             ]
+        },
+        {
+            "source": "./Plugins/Host",
+            "target": "./",
+            "condition": "(IncludePlugins)",
+            "modifiers": [
+                {
+                    "exclude": [
+                        "**/[Bb]in/**",
+                        "**/[Oo]bj/**",
+                        ".template.config/**/*",
+                        ".vs/**/*",
+                        ".idea/**/*",
+                        ".vscode/**/*"
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "./Plugins/Infra",
+            "target": "./Plugins",
+            "condition": "(IncludePlugins)",
+            "modifiers": [
+                {
+                    "exclude": [
+                        "**/[Bb]in/**",
+                        "**/[Oo]bj/**"
+                    ]
+                }
+            ]
+        },
+        {
+            "source": "./Plugins/Abstractions",
+            "target": "./Plugins.Abstractions",
+            "condition": "(IncludePlugins)",
+            "modifiers": [
+                {
+                    "exclude": [
+                        "**/[Bb]in/**",
+                        "**/[Oo]bj/**"
+                    ]
+                }
+            ]
         }
     ],
     "primaryOutputs": [
         {
-            "path": "Client.csproj"
+            "path": "HostApp.csproj"
+        },
+        {
+            "path": "Plugins.Abstractions/Plugins.Abstractions.csproj"
         }
     ],
     "postActions": [

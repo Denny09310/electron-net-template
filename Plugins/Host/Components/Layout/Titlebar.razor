@@ -1,0 +1,17 @@
+@using Plugins.Abstractions
+
+@inject IEnumerable<IMenuContributor> Contributors
+
+<header class="titlebar flex items-center [app-region:drag]">
+    <BbMenubar Class="flex-1 border-none">
+        @foreach (var menu in Contributors.OrderBy(x => x.Order))
+        {
+            <DynamicComponent @key="menu.Id" Type="@menu.ComponentType" />
+        }
+    </BbMenubar>
+    <div class="inline-flex items-center gap-2">
+        <BbButton Href="settings" Variant="ButtonVariant.Ghost" Size="ButtonSize.Icon" Class="w-8 h-8">
+            <LucideIcon Name="settings" Size="16" />
+        </BbButton>
+    </div>
+</header>
