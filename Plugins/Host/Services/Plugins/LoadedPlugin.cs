@@ -2,7 +2,7 @@ using System.Reflection;
 
 using Plugins.Abstractions;
 
-namespace HostApp.Services;
+namespace Host.Services;
 
 /// <summary>
 /// Describes a plugin loaded into its own assembly load context: its

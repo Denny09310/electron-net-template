@@ -1,4 +1,4 @@
-using HostApp.Services;
+using Host.Services;
 
 using Microsoft.Extensions.FileProviders;
 

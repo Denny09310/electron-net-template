@@ -5,7 +5,7 @@ using ElectronNET.API.Entities;
 
 using Plugins.Abstractions.Services;
 
-namespace HostApp.Services;
+namespace Host.Services;
 
 public sealed class SettingsPersistenceService : ISettingsPersistenceService
 {

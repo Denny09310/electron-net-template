@@ -2,7 +2,7 @@ using System.Globalization;
 
 using Plugins.Abstractions.Services;
 
-namespace HostApp.Services;
+namespace Host.Services;
 
 public interface ILocalizationService
 {

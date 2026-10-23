@@ -1,4 +1,4 @@
-namespace HostApp.Services;
+namespace Host.Services;
 
 public sealed record PluginOptions
 {

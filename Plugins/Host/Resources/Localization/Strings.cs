@@ -1,4 +1,4 @@
-namespace HostApp.Resources.Localization;
+namespace Host.Resources.Localization;
 
 /// <summary>
 /// Marker class for <c>Strings.resx</c> resource lookups.

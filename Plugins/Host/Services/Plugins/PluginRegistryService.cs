@@ -2,7 +2,7 @@ using System.Reflection;
 
 using Plugins.Abstractions;
 
-namespace HostApp.Services;
+namespace Host.Services;
 
 /// <summary>
 /// Discovers plugins under the configured directory, loads them into

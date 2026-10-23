@@ -13,7 +13,7 @@
     "name": "Electron.NET Desktop Application",
     "shortName": "electron-net",
     "description": "Creates an Electron.NET desktop application with ASP.NET Core backend integration. Pass --plugins to scaffold it plugin-based: plugin loading, menu/settings/route contribution and deployment.",
-    "sourceName": "HostApp",
+    "sourceName": "Host",
     "tags": {
         "language": "C#",
         "type": "project"
@@ -143,7 +143,7 @@
     ],
     "primaryOutputs": [
         {
-            "path": "HostApp.csproj"
+            "path": "Host.csproj"
         },
         {
             "path": "Plugins.Abstractions/Plugins.Abstractions.csproj"

@@ -26,7 +26,7 @@ app.UseMiddleware<ElectronAuthenticationMiddleware>();
 app.UseAntiforgery();
 
 app.MapStaticAssets();
-app.MapRazorComponents<HostApp.Components.App>()
+app.MapRazorComponents<Host.Components.App>()
     .AddInteractiveServerRenderMode();
 
 app.Run();

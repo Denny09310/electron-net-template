@@ -7,7 +7,7 @@ using ElectronNET.API.Entities;
 using ElectronNET.AspNet.Middleware;
 using ElectronNET.AspNet.Services;
 
-using HostApp.Services;
+using Host.Services;
 
 using Plugins.Abstractions.Services;
 
@@ -40,7 +40,7 @@ app.UseAntiforgery();
 
 app.MapStaticAssets();
 app.UsePluginStaticAssets();
-app.MapRazorComponents<HostApp.Components.App>()
+app.MapRazorComponents<Host.Components.App>()
     .AddInteractiveServerRenderMode()
     .AddPluginsAssemblies(app.Services);
 

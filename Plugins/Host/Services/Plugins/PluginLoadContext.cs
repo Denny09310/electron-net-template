@@ -1,7 +1,7 @@
 using System.Reflection;
 using System.Runtime.Loader;
 
-namespace HostApp.Services;
+namespace Host.Services;
 
 internal sealed class PluginLoadContext(string pluginPath) : AssemblyLoadContext(
     name: Path.GetFileNameWithoutExtension(pluginPath),
